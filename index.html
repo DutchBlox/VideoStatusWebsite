@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Inloggen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e1e2e;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background: #2a2a3d;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #4cafef;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3797db;
+    }
+    #status {
+      margin-top: 10px;
+      color: #ff5555;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Inloggen</h2>
+    <input type="text" id="username" placeholder="Gebruikersnaam">
+    <input type="password" id="password" placeholder="Wachtwoord">
+    <button onclick="checkLogin()">Login</button>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const status = document.getElementById("status");
+
+      // Gebruikerslijst (meerdere accounts mogelijk!)
+      const accounts = [
+        {username: "aanvrager", password: "geheim123"},
+        {username: "vriend1", password: "wachtwoord1"},
+        {username: "vriend2", password: "wachtwoord2"}
+      ];
+
+      // Check of er een match is
+      const found = accounts.find(acc => acc.username === user && acc.password === pass);
+
+      if(found) {
+        // Doorsturen naar de statuspagina
+        window.location.href = "status.html";
+      } else {
+        status.textContent = "❌ Foutieve login!";
+      }
+    }
+  </script>
+</body>
+</html>
